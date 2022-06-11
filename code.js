@@ -3,6 +3,7 @@ var y = 0;
 
 var draw_circle = "";
 var draw_rect = "";
+var draw_square = "";
 
 var SpeechRecognition = window.webkitSpeechRecognition;
 
@@ -28,7 +29,7 @@ recognition.onresult = function(event) {
         x = Math.floor(Math.random() * 900);
         y = Math.floor(Math.random() * 600);
 
-        document.getElementById("status").innerHTML = "The system has started drawing a circle."
+        document.getElementById("status").innerHTML = "The system has started drawing a circle.";
         draw_circle = "set";
     }
 
@@ -36,8 +37,16 @@ recognition.onresult = function(event) {
         x = Math.floor(Math.random() * 900);
         y = Math.floor(Math.random() * 600);
 
-        document.getElementById("status").innerHTML = "The system has started drawing a rectangle."
+        document.getElementById("status").innerHTML = "The system has started drawing a rectangle.";
         draw_rect = "set";
+    }
+
+    if (content == "square") {
+        x = Math.floor(Math.random() * 900);
+        y = Math.floor(Math.random() * 600);
+
+        document.getElementById("status").innerHTML = "The system has started drawing a square.";
+        draw_square = "set";
     }
 }
 
@@ -45,13 +54,19 @@ function draw() {
     if (draw_circle == "set") {
         var radius = Math.floor(Math.random() * 100);
         circle(x, y, radius);
-        document.getElementById("status").innerHTML = "Circle is drawn."
+        document.getElementById("status").innerHTML = "Circle is drawn.";
         draw_circle = "";
     }
 
     if (draw_rect == "set") {
-        rect(x, y, 50, 30);
-        document.getElementById("status").innerHTML = "Rectangle is drawn."
+        rect(x, y, 100, 50);
+        document.getElementById("status").innerHTML = "Rectangle is drawn.";
         draw_rect = "";
+    }
+
+    if (draw_square == "set") {
+        rect(x, y, 100, 100);
+        document.getElementById("status").innerHTML = "Square is drawn.";
+        draw_square = "";
     }
 }
